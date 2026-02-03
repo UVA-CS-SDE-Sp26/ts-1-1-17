@@ -1,1 +1,1 @@
-hello
+The FileHandler class interfaces with the expected data folder at the root.

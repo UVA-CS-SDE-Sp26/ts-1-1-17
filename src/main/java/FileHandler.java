@@ -41,4 +41,8 @@ public class FileHandler {
         }
         return fileOut;
     }
+
+    public Path getDataDir() {
+        return dataDir;
+    }
 }
