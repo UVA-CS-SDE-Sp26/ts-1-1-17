@@ -1,1 +1,16 @@
 The FileHandler class interfaces with the expected data folder at the root.
+
+Tests:
+data docs -- QuickBrown.txt, TJQuote.txt, ObjectOriented.txt
+
+1. does the list of files prints successfully after using the "listFiles" FileHandler method?
+INPUT  -- FileHandler.listFiles()
+OUTPUT -- ["01 QuickBrown.txt", "02 TJQuote.txt", "ObjectOriented.txt"]
+
+2. Provided a file from data, does the "readFile" method successfully parse content from that file?
+INPUT  -- FileHandler.readFile("ObjectOriented.txt")
+OUTPUT -- "Object-oriented programming is an exceptionally bad idea which could only have originated in California."
+
+3. Provided a file that is not within data, does the "readFile" method throw an exception?
+INPUT  -- FileHandler.readFile("Angiogenesis.txt")
+OUTPUT -- FileNotFoundException
