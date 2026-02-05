@@ -1,0 +1,13 @@
+The program controller task connects the command line interface with the file handler
+to request file contents and display readable text.
+
+Tests:
+src docs -- QuickBrown.txt, TJQuote.txt, ObjectOriented.txt
+
+1. If no args are passed, do these files in source print out as a list?
+    * Have an array of strings with the number, title
+    * Assert string equal for elements of the array
+
+2. If the user passes 01 in the commandline, does the corresponding text file display?
+    * Have a string with the contents of QuickBrown.txt for comparison
+    * Assert if the string output is equal to the stored comparison output
