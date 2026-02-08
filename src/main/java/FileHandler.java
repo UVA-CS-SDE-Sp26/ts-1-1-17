@@ -11,9 +11,11 @@ import java.util.stream.Stream;
 
 public class FileHandler {
     private  final Path dataDir;
+
     public FileHandler(){
         this.dataDir= Paths.get("data");
     }
+
     public List<String> listFiles(){ // found format for this on https://www.baeldung.com/java-list-directory-files
         if (!Files.exists(dataDir) || !Files.isDirectory(dataDir)) {
             throw new IllegalStateException("Data directory not found: " + dataDir.toAbsolutePath());
@@ -28,6 +30,7 @@ public class FileHandler {
             throw new RuntimeException("Error reading data directory", e);
         }
     }
+
     public String readFile(String filename){
         String fileOut="";
         File reading= new File(filename); //format for this found on https://www.w3schools.com/java/java_files_read.asp
