@@ -13,7 +13,7 @@ public class FileHandler {
     private final Path dataDir;
 
     public FileHandler(){
-        this.dataDir= Paths.get("data");
+        this.dataDir = Paths.get("../../../data");
     }
 
     public List<String> listFiles(){ // found format for this on https://www.baeldung.com/java-list-directory-files
