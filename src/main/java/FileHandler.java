@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileHandler {
-    private  final Path dataDir;
+    private final Path dataDir;
 
     public FileHandler(){
         this.dataDir= Paths.get("data");

@@ -32,9 +32,9 @@ public class ProgramController {
             idx++;
         }
     }
-    private void handleShow(int idx){
+    public void handleShow(int idx){
         String output = files.get(idx-1);
-        fileHandler.readFile(output);
+        System.out.println(fileHandler.readFile(fileHandler.getDataDir()+"/"+output));
     }
     private void printError(){
         System.out.println("Error ig. idk lol.");
