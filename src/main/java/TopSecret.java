@@ -1,6 +1,7 @@
 /**
  * Commmand Line Utility
  */
+
 public class TopSecret {
     public static void main(String[] args) {
         CommandLineParser placeholderParser = new CommandLineParser(args);

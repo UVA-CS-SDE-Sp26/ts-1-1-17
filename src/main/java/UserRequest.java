@@ -20,4 +20,8 @@ public class UserRequest {
     public int getSelection() {
         return selection;
     }
+
+    public void setSelection(int selection) {
+        this.selection = selection;
+    }
 }
