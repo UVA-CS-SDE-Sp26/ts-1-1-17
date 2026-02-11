@@ -1,0 +1,41 @@
+deciphers ciphered text using a substitution key loaded from a key file.
+
+default key file is stored in (ciphers/key.txt)
+The program may also be run with an alternate key file path as the 2nd argument:
+  java topsecret <fileNumber> <keyFile>
+
+file format -
+Line 1: actual character set
+Line 2: cipher character set (encoded text)
+
+checks:
+The two lines must have the same length.
+Each character position defines a mapping.
+
+
+
+mapping direction (deciphering)
+To decipher, we build a mapping from:
+  cipherChar -> actualChar
+
+If cipher line has 'b' at index i and actual line has 'a' at index i,
+then 'b' in the ciphered text becomes 'a' in the output.
+
+Given input text:
+- For each character in the text:
+  - If the character exists in the cipher->actual map, replace it with its mapped value
+  - Otherwise (spaces, punctuation, etc.), leave it unchanged
+- Return the resulting string
+
+validation/error handling
+- If the file does not have exactly two lines, it is invalid
+- If either line is empty, it is invalid
+- If the two lines are different lengths, it is invalid
+throw IllegalArgumentException
+if file cannot be read, throws IOException.
+
+Unit Tests (!!!)
+- Valid key file loads and produces expected mappings
+- Invalid key format (missing line, empty, different lengths) throws exception
+- Deciphering replaces mapped characters correctly
+- Characters not in mapping remain unchanged (try punctuations)
