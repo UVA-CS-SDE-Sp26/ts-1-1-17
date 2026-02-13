@@ -4,7 +4,7 @@ public class CommandLineParser {
 
     public CommandLineParser(String[] args) {
         if (args == null || args.length == 0) {
-            placeholder = "";  // emptyy place holder
+            placeholder = "";  // empty place holder
             return;
         }
 
