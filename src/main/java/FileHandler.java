@@ -1,26 +1,32 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileHandler {
-    private Path dataDir; // removed 'final' to allow easier tests, bad style, I know, sorry
+    private Path dataDir;
+    private final CipherService cipherService;
+    private final KeyLoader keyLoader;
+
 
     public FileHandler() {
-        this.dataDir = Paths.get("./data");
+        this(Paths.get("./data"), new CipherService(), new KeyLoader());
+    }
+
+    public FileHandler(Path dataDir, CipherService cipherService, KeyLoader keyLoader) {
+        this.dataDir = dataDir;
+        this.cipherService = cipherService;
+        this.keyLoader = keyLoader;
     }
 
     public void terminalDataDir() {
         this.dataDir = Paths.get("../../../data");
     }
 
-    public List<String> listFiles(){ // found format for this on https://www.baeldung.com/java-list-directory-files
+    public List<String> listFiles() {
         if (!Files.exists(dataDir) || !Files.isDirectory(dataDir)) {
             throw new IllegalStateException("Data directory not found: " + dataDir.toAbsolutePath());
         }
@@ -35,18 +41,25 @@ public class FileHandler {
         }
     }
 
-    public String readFile(String filename){
-        String fileOut="";
-        File reading= new File(filename); //format for this found on https://www.w3schools.com/java/java_files_read.asp
-        try (Scanner scan = new Scanner(reading)){
-            while(scan.hasNextLine()){
-                fileOut+=scan.nextLine();
-            }
-        }catch (FileNotFoundException e){
-            System.out.println("File not found.");
-            e.printStackTrace();
+    public String readFile(String filename) {
+        return readFile(filename, null);
+    }
+
+    public String readFile(String filename, String keyPath) {
+        try {
+            Path filePath = dataDir.resolve(filename);
+            String encryptedText = Files.readString(filePath);
+
+            Path keyFile = (keyPath == null || keyPath.isBlank())
+                    ? Paths.get("ciphers/key.txt")
+                    : Paths.get(keyPath);
+
+            CipherKey key = keyLoader.loadKey(keyFile.toString());
+            return cipherService.decipher(encryptedText, key);
+
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading/deciphering file: " + filename, e);
         }
-        return fileOut;
     }
 
     public Path getDataDir() {

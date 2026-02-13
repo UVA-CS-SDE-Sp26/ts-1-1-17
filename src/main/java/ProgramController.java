@@ -36,9 +36,10 @@ public class ProgramController {
         return ret;
     }
     public String handleShow(int idx){
-        String output = files.get(idx-1);
-        return fileHandler.readFile(fileHandler.getDataDir()+"/"+output);
+        String output = files.get(idx - 1);
+        return fileHandler.readFile(output);
     }
+
     private void printError(){
         System.out.println("Error ig. idk lol.");
     }
