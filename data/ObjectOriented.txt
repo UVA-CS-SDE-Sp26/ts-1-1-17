@@ -1,2 +1,1 @@
-Object-oriented programming is an exceptionally bad idea
-which could only have originated in California
+Object-oriented programming is an exceptionally bad idea which could only have originated in California

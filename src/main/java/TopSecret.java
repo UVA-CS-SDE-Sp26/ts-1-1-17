@@ -3,13 +3,14 @@
  */
 public class TopSecret {
     public static void main(String[] args) {
-        CommandLineParser placeholderParser = new CommandLineParser(args);
-        String selection = placeholderParser.placeholder;
+        CommandLineParser parser = new CommandLineParser(args);
+        String selection = parser.placeholder;
 
         FileHandler fileHandler = new FileHandler();
+        fileHandler.terminalDataDir();
         ProgramController programController = new ProgramController(fileHandler);
         UserRequest userRequest = new UserRequest(selection);
 
-        programController.execute(userRequest);
+        System.out.println(programController.execute(userRequest));
     }
 }

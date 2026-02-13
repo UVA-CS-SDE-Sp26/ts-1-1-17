@@ -25,7 +25,7 @@ public class CommandLineParser {
         placeholder = fileArg;
     }
 
-    private static void printUsage() {  // prints to termnal status of
+    private static void printUsage() {  // prints to terminal status of
         System.out.println("Usage:");
         System.out.println("  java topsecret");
         System.out.println("  java topsecret <fileNumber>");

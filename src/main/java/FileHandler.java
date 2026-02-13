@@ -10,10 +10,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileHandler {
-    private final Path dataDir;
+    private Path dataDir; // removed 'final' to allow easier tests, bad style, I know, sorry
 
-    public FileHandler(){
-        this.dataDir = Paths.get("../../../data"); // there's gotta be a better way :(
+    public FileHandler() {
+        this.dataDir = Paths.get("./data");
+    }
+
+    public void terminalDataDir() {
+        this.dataDir = Paths.get("../../../data");
     }
 
     public List<String> listFiles(){ // found format for this on https://www.baeldung.com/java-list-directory-files

@@ -10,31 +10,34 @@ public class ProgramController {
         files = fileHandler.listFiles();
     }
 
-    public void execute(UserRequest request){
+    public String execute(UserRequest request){
+        String out = "";
         switch (request.getSelection()) {
             case (-1):
                 System.out.println("Try running the program again.");
                 System.exit(0);
                 break;
             case (0):
-                handleList();
+                out = handleList();
                 break;
             default:
-                handleShow(request.getSelection());
-
+                out = handleShow(request.getSelection());
         }
+        return out;
     }
 
-    public void handleList(){
+    public String handleList(){
+        String ret = "";
         int idx = 1;
         for(String file : files){
-            System.out.println(String.format("%02d\t%s", idx, file));
+            ret += String.format("%02d\t%s\n", idx, file);
             idx++;
         }
+        return ret;
     }
-    public void handleShow(int idx){
+    public String handleShow(int idx){
         String output = files.get(idx-1);
-        System.out.println(fileHandler.readFile(fileHandler.getDataDir()+"/"+output));
+        return fileHandler.readFile(fileHandler.getDataDir()+"/"+output);
     }
     private void printError(){
         System.out.println("Error ig. idk lol.");
