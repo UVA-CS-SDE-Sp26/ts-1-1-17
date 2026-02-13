@@ -36,8 +36,16 @@ public class ProgramController {
         return ret;
     }
     public String handleShow(int idx){
-        String output = files.get(idx-1);
-        return fileHandler.readFile(fileHandler.getDataDir()+"/"+output);
+        try {
+            String output = files.get(idx-1);
+            return fileHandler.readFile(fileHandler.getDataDir()+"/"+output);
+        }
+        catch(IndexOutOfBoundsException e){
+            System.out.println("Error: Index " + idx + " is out of bounds. Current list size is " + files.size() + ".");
+            System.out.println("Try again please.");
+            System.exit(0);
+        }
+        return "";
     }
     private void printError(){
         System.out.println("Error ig. idk lol.");
