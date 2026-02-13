@@ -1,0 +1,39 @@
+TopSecret Command Line Interface
+
+WHAT THE FILE DOES?
+The TopSecret program is executed from the command line and allows users to list
+available files or display the contents of a selected file.
+
+COMMANDS IN FILE
+
+1. List available files
+   Command:
+   java topsecret
+
+   Behavior:
+   SHows a numbered list of files available in the data directory.
+   The program exits after displaying the list
+
+2. Show a file using default cipher key
+   Command:
+   java topsecret <fileNumber>
+
+   Behavior:
+   Displays the contents of the selected file.
+   If encryption is used, the default key is added
+
+3. Show a file using an alternate key file
+   Command:
+   java topsecret <fileNumber> <keyFile>
+
+   Behavior:
+   Displays the contents of the selected file using the provided key file.
+
+
+3B. FILE NUMBERING
+Files are displayed starting at number 01  The number corresponds to the
+file's position in the displayed list.
+
+3C. ERROR HANDLING
+If invalid arguments are supplied, such as a non-numeric file number or too
+many arguments, the program prints instructions for the user and exits
