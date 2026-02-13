@@ -1,25 +1,31 @@
+//import jdk.internal.org.jline.utils.StyleResolver
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
+import org.junit.jupiter.api.io.TempDir;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CipherTest {
+    @TempDir
+    Path tempDir;
 
     @Test
-    void loadKey() throws IOException {
+    void loadKey() throws Exception {
+
+
         // check loading key w/ a new string and a temp file
         String keyData = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890\n" +
-                "qwertyuiopasdfghjklzxcvbnm1234567890";
-
+                "bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890a";
+        Path keyFile = tempDir.resolve("key.txt");
+        Files.writeString(keyFile, keyData);
         KeyLoader loader = new KeyLoader();
         //added io exception to fix error
-        CipherKey key = loader.loadKey(keyData);
+        CipherKey key = loader.loadKey(keyFile.toString());
 
         // a b and numeric 0
-        assertEquals('q', key.get('a'));
-        assertEquals('w', key.get('b'));
-        assertEquals('1', key.get('0'));
+        assertEquals('0', key.get('a'));
+        assertEquals('a', key.get('b'));
+        assertEquals('9', key.get('0'));
     }
 
     @Test

@@ -7,7 +7,7 @@ public class KeyLoader {
     // loads a key file and builds CipherKey for deciphering
     public CipherKey loadKey(String keyPath) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader(keyPath));
+        try (BufferedReader reader = new BufferedReader(new FileReader(keyPath))) {
 
         //line 1 = actual, line 2 = ciphered char
         String actual = reader.readLine();
@@ -20,7 +20,7 @@ public class KeyLoader {
             throw new IllegalArgumentException("Key file must contain exactly 2 lines.");
         }
 
-        if (actual.length() == 0) {
+        if (actual.length() == 0 || cipher.length() == 0) {
             throw new IllegalArgumentException("Key file lines cannot be empty.");
         }
 
@@ -35,5 +35,5 @@ public class KeyLoader {
         }
 
         return key;
-    }
+    }}
 }
