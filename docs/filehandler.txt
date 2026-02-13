@@ -1,5 +1,22 @@
 The FileHandler class interfaces with the expected data folder at the root.
+Responsibilities include
+- Locating the data directory
+- Listing regular files inside the data directory
+- Reading the contents of the specified file
 
+Methods overview:
+List<String> listFiles()
+- returns a list of filenames located in data directory
+- throws illegal state exception if the directory does not exist and wraps any IO exceptions into a RuntimeException
+
+String readFile(String filename)
+- reads file line by line
+- returns content, translated by cipher
+
+Path getDataDir()
+- returns Path object representing data directory
+
+Constructor - public FileHandler() initializes data directory
 Tests:
 data docs -- QuickBrown.txt, TJQuote.txt, ObjectOriented.txt
 
